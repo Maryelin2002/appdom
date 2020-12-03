@@ -1,0 +1,233 @@
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->
+<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
+<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * Delete the template below * * * * * * * * * * -->
+<!-- * * * * * * * to get started with your project! * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+
+<style>
+
+  #global{
+      background: rgb(245, 245, 220,0.3);
+      width: 1255px;
+      height: 1350px;
+      resize: horizontal;
+      padding: 20px;
+  }
+
+  #content{
+      border-style: double;
+      border-color: blue;
+      border-radius: 5px;
+  }
+
+  #consultar{
+      border-style:hidden hidden hidden solid;
+      border-color: navy;
+      border-radius: 1px;
+      padding: 20px; 
+      width: 350px;
+      height: 100px;
+      resize: horizontal;
+      float: left;
+      background-color: rgb(127, 255, 212,0.4);
+  }
+
+  .input{
+      border-style: groove;
+      border-color: blueviolet;
+      border-radius: 5px;
+      color: black;
+      padding: 8px 16px;
+      font-size: 16px;
+      text-align: center;
+      margin: 2px 1px;
+      background: rgb(255, 255, 255,0.8);
+  }
+
+  .button{
+      background: lightgreen;
+      border-style: solid;
+      border-color:green;
+      border-radius: 5px;
+      font-style: italic;
+      padding: 8px 16px;
+      text-align: center;
+      text-decoration: none;
+      display: inline;
+      font-size: 16px;
+      margin: 2px 1px;
+      transition-duration: 0.4s;
+      cursor: pointer;
+      border-radius: 10px;
+  }
+
+  #mostrar{
+      border-style:hidden solid hidden hidden;
+      border-color: navy;
+      border-radius: 1px;
+      padding: 20px; 
+      width: 900px;
+      height: 200px;
+      resize: horizontal;
+      float: right;
+      background-color: rgb(127, 255, 212,0.4);
+  }
+
+  table, th, td{
+      border: 1px solid blueviolet;
+      background: rgb(255, 255, 255,0.8);
+      color: white;
+      text-align: center;
+      
+  }
+  th{
+      background: rgb(3, 3, 87);
+  }
+  td{
+      background: none;
+      color: black;
+  }
+
+  #about-me{
+      border-style:hidden hidden hidden solid;
+      border-color: navy;
+      border-radius: 1px;
+      padding: 20px; 
+      width: 500px;
+      height: 600px;
+      resize: horizontal;
+      float: left;
+      background-color: rgb(127, 255, 212,0.4);
+  }
+
+  #line{
+      border-radius: 1px;
+      border-color: red;
+      height:2px;
+      background-color: red;
+  }
+
+  #rd{
+      width: 90px;
+      height: 100px;
+      float: left;
+      padding:0px;
+  }
+
+  footer {
+      font-family: Helvetica, Arial;
+      color:white;
+      height: 47px;
+      background: rgba(51, 51, 51, 0.70);
+      margin:0px auto;
+      width: 65%;
+      padding-left: 20px;
+      padding-right: 20px;
+      margin-top: 50px;
+      line-height: 47px;
+  }
+
+  .subir{
+      
+      text-decoration: none;
+      display: box;
+      float:right;
+      background: rgb(8, 248, 236);
+      color: black;
+      transition-duration: 0.4s;
+      cursor: pointer;
+      padding: 2px 4px;
+      text-align: center;
+      font-size: 14px;
+      margin: 2px 1px;
+      float:right;
+  }
+
+  #contenido{
+    background-image: url(../assets/imgs/rd.jpg);
+    background-size: 100% 100%;
+    padding: 20px;
+  }
+
+</style>
+
+<div id="contenido">
+
+  <header>
+    <div>
+        <img id="rd" src="../assets/imgs/JCE.png"><br/><br/>
+        <h1>Validación de datos de dominicanos</h1>
+    </div>
+  </header>
+  <hr id="line"/>
+
+  <div id="global">
+
+    <div id="consultar">
+        <h3>Introduzca su cédula: </h3>
+        <input type="text" class="input" placeholder="CEDULA" #id>
+        <button class="button" (click) = "getCiudadano(id.value); clean();">ENVIAR</button>
+    </div>
+
+    <div id="mostrar">
+        
+        <table id="tabla" style="width:100%">
+            <thead>
+                <th>Cédula</th>
+                <th>Foto</th>
+                <th>Nombres</th>
+                <th>Apellidos</th>
+                <th>Fecha de Nacimiento</th>
+                <th>Edad</th>
+                <th>Signo Zodiacal</th>
+            </thead>
+            <tbody>
+                <tr *ngIf="ciudadano">
+                    <td>{{ ciudadano.Cedula }}</td>
+                    <td><img src="{{ ciudadano.foto }}" alt="{{ciudadano.Nombres}}"></td>
+                    <td>{{ ciudadano.Nombres }}</td>
+                    <td>{{ ciudadano.Apellido1 }}</td>
+                    <td>{{ ciudadano.FechaNacimiento }}</td>
+                    <td>{{ciudadano.Edad}}</td>
+                    <td>{{ciudadano.SignoZodiacal}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    
+    <div id="about-me">
+        <h3>Acerca de Mi</h3>
+        <img src="../assets/imgs/Maryelin.jpg" alt="Maryelin" height="350px">
+        <p>
+            <b>Nombres: </b>Maryelin Virginia<br/>
+            <b>Apellidos: </b>Ramírez Álvarez<br/>
+            <b>Correo electrónico: </b>maryelinram@gmail.com<br/>
+            <b>Teléfono: </b>809-750-4490<br/>
+
+            <h4>Aplicación diseñada por YelinCode<br/>
+            Esta aplicación tiene un costo de RD$63,720</h4>
+    </div>
+    
+  </div>
+
+  <footer>
+    Maryelin Virginia Ramírez Álvarez matrícula: 2019-7898 //
+    YelinCode &copy;
+
+    <a href="#" class="subir">IR ARRIBA</a>
+  </footer>
+</div>
+
+
+
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * The content above * * * * * * * * * * * -->
+<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
+<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * End of Placeholder * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
